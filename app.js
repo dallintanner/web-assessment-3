@@ -63,17 +63,24 @@ const OTHER_FOSSILS = [
 // TODO: Replace this comment with your code
 
 app.get('/top-fossils', (req, res) => {
-  res.render('top-fossils.html.njk', {fossils: MOST_LIKED_FOSSILS});
+  if(req.query){
+    res.render('top-fossils.html.njk', {fossils: MOST_LIKED_FOSSILS});
+  } else {
+    res.render('homepage.html.njk')
+  }
 });
 
 app.get('/', (req, res) => {
-  console.log(req.session);
-  res.render('homepage.html.njk');
+  if(req.query){
+    res.render('top-fossils.html.njk')
+  } else{
+    res.render('homepage.html.njk');
+  }
 });
 
 app.get('/get-name', (req, res) => {
+  console.log(`the user's name is :`);
   const {name} = req.query;
-  //res.send(`Welcome ${name}`);
   res.render('top-fossils.html.njk', {name});
 });
 

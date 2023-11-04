@@ -7,13 +7,26 @@
     <title>Most Liked Fossils</title>
   </head>
   <body>
+    <h1>Welcome, {{name}}</h1>
     {% for fossil in fossils %}
       <div class="fossil-div">
-        <h3>Fossile Name: {{ fossil.name }}</h3>
+        <h3>{{name}}, this is a {{ fossil.name }}</h3>
         <h2>Liked {{ fossil.num_likes }} times.</h2>
         <img src="{{ fossil.img }}" />
       </div>
     {% endfor %}
+
+    <form>
+      <div>
+        <label for="like">Like a fossil:</label>
+        <select name = "like" id="like">
+          <option> value=</option>
+          <option> value=</option>
+          <option> value=</option>
+          <option> value=</option>
+        </select>
+      </div>
+    </form>
   </body> 
 </html>
  
