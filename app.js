@@ -63,25 +63,28 @@ const OTHER_FOSSILS = [
 // TODO: Replace this comment with your code
 
 app.get('/top-fossils', (req, res) => {
-  if(req.query){
-    res.render('top-fossils.html.njk', {fossils: MOST_LIKED_FOSSILS});
+  console.log(req.session.usersName)
+  if(req.session.usersName){
+    res.render('top-fossils.html.njk', {fossils: MOST_LIKED_FOSSILS, usersName: req.session.usersName});
   } else {
     res.render('homepage.html.njk')
   }
 });
 
 app.get('/', (req, res) => {
-  if(req.query){
+  if(req.session.usersName){
     res.render('top-fossils.html.njk')
   } else{
     res.render('homepage.html.njk');
   }
+
 });
 
 app.get('/get-name', (req, res) => {
-  console.log(`the user's name is :`);
-  const {name} = req.query;
-  res.render('top-fossils.html.njk', {name});
+  const {usersName} = req.query;
+  req.session.usersName = usersName;
+  res.render('top-fossils.html.njk', {usersName});
+  console.log(req.session);
 });
 
 // Code Below Was Given
