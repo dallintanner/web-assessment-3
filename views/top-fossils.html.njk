@@ -1,32 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Most Liked Fossils</title>
-  </head>
-  <body>
-    <h1>Welcome, {{usersName}}</h1>
-    {% for fossil in fossils %}
-      <div class="fossil-div">
-        <h3>{{usersName}}, this is a {{ fossil.name }}</h3>
-        <h2>Liked {{ fossil.num_likes }} times.</h2>
-        <img src="{{ fossil.img }}" />
-      </div>
-    {% endfor %}
+{% extends 'base.html.njk' %}
 
-    <form>
-      <div>
-        <label for="like">Like a fossil:</label>
-        <select name = "like" id="like">
-          <option> value=</option>
-          <option> value=</option>
-          <option> value=</option>
-          <option> value=</option>
-        </select>
-      </div>
-    </form>
-  </body> 
-</html>
- 
+{% block title %}Most Liked Fossils{%  endblock title%}
+
+{% block body %}
+  <h1>Welcome, {{usersName}}</h1>
+  {% for fossil in fossils %}
+    <div class="fossil-div">
+      <h3>{{usersName}}, this is a {{ fossil.name }}</h3>
+      <h2>Liked {{ fossil.num_likes }} times.</h2>
+      <img src="{{ fossil.img }}" />
+    </div>
+  {% endfor %}
+
+  <form>
+    <div>
+      <label for="like">Like a fossil:</label>
+      <select name = "like" id="like">
+        {% for each in fossils%}
+          <option>{{each.name}}</option>
+        {% endfor %}
+        {# <option> value=</option>
+        <option> value=</option>
+        <option> value=</option>
+        <option> value=</option> #}
+      </select>
+    </div>
+  </form>
+{% endblock body %}
